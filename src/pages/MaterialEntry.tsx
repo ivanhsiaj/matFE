@@ -366,6 +366,9 @@ const MaterialEntry = () => {
       });
 
       setCounts({});
+      navigate("/employee/mode-selection");
+      dispatch(setMode(""));
+      dispatch(setFurnaceSize("")); // Clear all state after submission
     } catch (err) {
       console.error(err);
       toast({
@@ -416,13 +419,13 @@ const MaterialEntry = () => {
                 <span
                   className={
                     furnaceSize.toUpperCase() === "BIG"
-                      ? "bg-green-400 font-semibold text-white px-2 py-1 rounded whitespace-nowrap" 
+                      ? "bg-green-400 font-semibold text-white px-2 py-1 rounded whitespace-nowrap"
                       : "bg-red-400 font-semibold text-white px-2 py-1 rounded whitespace-nowrap"
                   }
                 >
                   {furnaceSize.toUpperCase()} Furnace
                 </span>{" "}
-                
+
               </CardDescription>
             </div>
 
