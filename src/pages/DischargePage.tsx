@@ -92,6 +92,9 @@ export default function DischargePage() {
       });
       setSelectedItem(null);
       setWeight("");
+      navigate("/employee/mode-selection");
+      dispatch(setMode(""));
+      dispatch(setFurnaceSize(""));
     } catch (err) {
       console.error(err);
       toast({
@@ -99,6 +102,7 @@ export default function DischargePage() {
         description: "Please try again",
         variant: "destructive",
       });
+
     } finally {
       setIsSubmitting(false);
     }
@@ -131,6 +135,9 @@ export default function DischargePage() {
       setSelectedItem(null);
       setPossibleInputs([]);
       setSelectedInputId(null);
+      navigate("/employee/mode-selection");
+      dispatch(setMode(""));
+      dispatch(setFurnaceSize(""));
     } catch (err) {
       console.error(err);
       toast({
