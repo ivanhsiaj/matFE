@@ -12,6 +12,7 @@ import DischargePage from "./pages/DischargePage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import OperationFurnaceSelection from "./pages/OperationFurnaceSelectionPage";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -54,6 +55,10 @@ const App = () => {
             <Route
               path="/employee/discharge/material-entry"
               element={<DischargePage />}
+            />
+            <Route
+              path="/employee/mode-selection"
+              element={<OperationFurnaceSelection />}
             />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

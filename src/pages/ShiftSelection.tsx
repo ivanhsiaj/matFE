@@ -312,7 +312,7 @@ const ShiftSelection = () => {
     "Shift 3": [],
   });
 
-  const [mode, setMode] = useState(""); // 👈 Charge or Discharge
+  // const [mode, setMode] = useState(""); // 👈 Charge or Discharge
 
   const now = new Date();
   const currentHour = now.getHours();
@@ -362,29 +362,30 @@ const ShiftSelection = () => {
     dispatch(setShift(shift.id));
     dispatch(setEmployee(null));
     setCurrentShift(shift.id);
-    setMode(""); // Reset mode on new shift
+    // setMode(""); // Reset mode on new shift
   };
 
   const handleEmployeeSelect = (emp) => {
     dispatch(setEmployee(emp));
   };
 
-  const handleModeSelect = (value) => {
-    setMode(value);
-  };
+  // const handleModeSelect = (value) => {
+  //   setMode(value);
+  // };
 
   const handleContinue = () => {
-    if (currentShift && selectedEmployee && mode=="charge") {
+    if (currentShift && selectedEmployee) {
       // 👇 Pass mode in query too
       navigate(
-        `/employee/material-entry?shift=${currentShift}&employee=${selectedEmployee._id}&mode=${mode}`
+        `/employee/mode-selection?shift=${currentShift}&employee=${selectedEmployee._id}`
       );
-    }else if( currentShift && selectedEmployee && mode=="discharge") {
-      navigate(
-        `/employee/discharge/material-entry?shift=${currentShift}&employee=${selectedEmployee._id}&mode=${mode}`
-      );
-
     }
+    // else if( currentShift && selectedEmployee ) {
+    //   navigate(
+    //     `/employee/discharge/material-entry?shift=${currentShift}&employee=${selectedEmployee._id}&mode=${mode}`
+    //   );
+
+    // }
   };
 
   return (
@@ -539,7 +540,7 @@ const ShiftSelection = () => {
                   ))}
                 </div>
 
-                {/* Charge/Discharge toggle */}
+                {/* Charge/Discharge toggle
                 <div className="mt-5">
                   <h3 className="text-sm font-semibold mb-2">
                     Select Operation:
@@ -569,14 +570,14 @@ const ShiftSelection = () => {
                       <RefreshCcw className="w-4 h-4 mr-2" /> Discharge
                     </button>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="mt-5 grid grid-cols-1">
                   <button
                     onClick={handleContinue}
-                    disabled={!currentShift || !selectedEmployee || !mode}
+                    disabled={!currentShift || !selectedEmployee}
                     className={`px-4 py-2 rounded-xl font-semibold text-lg transition-all duration-200 ${
-                      currentShift && selectedEmployee && mode
+                      currentShift && selectedEmployee 
                         ? "bg-green-500 text-white hover:bg-green-600"
                         : "bg-gray-200 text-sm text-gray-500 cursor-not-allowed"
                     }`}

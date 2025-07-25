@@ -36,6 +36,8 @@ const DischargeTable = ({ t, backendUrl }) => {
     employeeName: "",
     dateFrom: "",
     dateTo: "",
+    furnaceSize: "all",
+    sowId: "",
   });
 
   const [selectedMaterialEntry, setSelectedMaterialEntry] = useState(null);
@@ -69,8 +71,22 @@ const DischargeTable = ({ t, backendUrl }) => {
       !filters.dateFrom || timestamp >= new Date(filters.dateFrom);
     const matchesDateTo =
       !filters.dateTo || timestamp <= new Date(filters.dateTo);
-
-    return matchesShift && matchesName && matchesDateFrom && matchesDateTo;
+    // const matchesFurnaceSize =
+    //   filters.furnaceSize === "all" || d.furnaceSize === filters.furnaceSize;
+    const matchesFurnaceSize =
+      filters.furnaceSize === "all" ||
+      d.furnaceSize?.toUpperCase() === filters.furnaceSize;
+    const matchesSowId =
+      !filters.sowId ||
+      d.sowId?.toLowerCase().includes(filters.sowId.toLowerCase());
+    return (
+      matchesShift &&
+      matchesName &&
+      matchesDateFrom &&
+      matchesDateTo &&
+      matchesFurnaceSize &&
+      matchesSowId
+    );
   });
 
   const handleExport = () => {
@@ -107,8 +123,32 @@ const DischargeTable = ({ t, backendUrl }) => {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
         <CardTitle>{t("adminDashboard.dischargeRecords")}</CardTitle>
+        <div className="flex flex-col md:flex-row gap-2">
+          {/* <p className="text-sm">.</p> */}
+          <Button
+            onClick={() =>
+              setFilters({
+                shift: "all",
+                employeeName: "",
+                dateFrom: "",
+                dateTo: "",
+                furnaceSize: "all",
+                sowId: "",
+              })
+            }
+            className="flex-shrink-0"
+          >
+            Clear Filters
+          </Button>
+          {/* </div> */}
+          {/* <div className="w-full sm:w-auto flex-1 min-w-[150px]"> */}
+          {/* <p className="text-sm">.</p> */}
+          <Button onClick={handleExport} className="flex-shrink-0">
+            <Download className="w-4 h-4 mr-2" /> Export CSV
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         {/* 🔍 Filter section */}
@@ -145,6 +185,18 @@ const DischargeTable = ({ t, backendUrl }) => {
             />
           </div>
           <div className="w-full sm:w-auto flex-1 min-w-[150px]">
+            <p className="text-sm">Sow ID</p>
+            <Input
+              placeholder="Sow ID"
+              value={filters.sowId}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, sowId: e.target.value }))
+              }
+              className="flex-1 min-w-[150px]"
+            />
+          </div>
+
+          <div className="w-full sm:w-auto flex-1 min-w-[150px]">
             <p className="text-sm">To Date</p>
             <Input
               type="date"
@@ -166,27 +218,24 @@ const DischargeTable = ({ t, backendUrl }) => {
               className="flex-1 min-w-[150px]"
             />{" "}
           </div>
+
           <div className="w-full sm:w-auto flex-1 min-w-[150px]">
-            <p className="text-sm">.</p>
-            <Button
-              onClick={() =>
-                setFilters({
-                  shift: "all",
-                  employeeName: "",
-                  dateFrom: "",
-                  dateTo: "",
-                })
+            <p className="text-sm">Furnace Size</p>
+            <Select
+              value={filters.furnaceSize}
+              onValueChange={(v) =>
+                setFilters((f) => ({ ...f, furnaceSize: v }))
               }
-              className="flex-shrink-0"
             >
-              Clear Filters
-            </Button>
-          </div>
-          <div className="w-full sm:w-auto flex-1 min-w-[150px]">
-            <p className="text-sm">.</p>
-            <Button onClick={handleExport} className="flex-shrink-0">
-              <Download className="w-4 h-4 mr-2" /> Export CSV
-            </Button>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Furnace Size" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="BIG">BIG</SelectItem>
+                <SelectItem value="SMALL">SMALL</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 

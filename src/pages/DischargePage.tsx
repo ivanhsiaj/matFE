@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent,CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft,Cuboid } from "lucide-react";
+
 import LangToggle from "@/components/LangToggle";
-
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setShift,
+  setEmployee,
+  setMode,
+  setFurnaceSize,
+  clearAll,
+} from "@/store/shiftSlice";
 export default function DischargePage() {
+  const dispatch = useDispatch();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { selectedShift: shift, selectedEmployee: employee, furnaceSize,mode } =
+    useSelector((state) => state.shift);
+  // const shift = searchParams.get("shift");
+  // const employee = searchParams.get("employee");
+  // const mode = searchParams.get("mode");
+  // const furnaceSize = searchParams.get("furnaceSize");
 
-  const shift = searchParams.get("shift");
-  const employee = searchParams.get("employee");
-
-  const [furnaceSize, setFurnaceSize] = useState("big");
+  // const [furnaceSize, setFurnaceSize] = useState("big");
   const [selectedItem, setSelectedItem] = useState(null);
   const [weight, setWeight] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,11 +38,13 @@ export default function DischargePage() {
   const [preferredId, setPreferredId] = useState(null);
   const [selectedInputId, setSelectedInputId] = useState(null);
 
-  useEffect(() => {
-    if (!shift || !employee) {
+   useEffect(() => {
+    if (!shift || !employee || !furnaceSize ) {
       navigate("/employee/shift-selection");
+    }else if(!["big", "small"].includes(furnaceSize) || !["charge", "discharge"].includes(mode)) {
+      navigate("/employee/mode-selection");
     }
-  }, [shift, employee]);
+  }, [shift, employee, navigate]);
 
   const handleSelectItem = async (type) => {
     setSelectedItem(type);
@@ -136,7 +149,11 @@ export default function DischargePage() {
         <div className="flex justify-between items-center">
           <Button
             variant="ghost"
-            onClick={() => navigate("/employee/shift-selection")}
+            onClick={() => {
+              dispatch(setMode(""));
+              dispatch(setFurnaceSize(""));
+              navigate("/employee/mode-selection");
+            }}
             className="mb-6 mt-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -149,17 +166,33 @@ export default function DischargePage() {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle className="text-center text-xl">
-              Discharge Mode
-            </CardTitle>
-            <div className="flex justify-center mt-4">
+            <div className="block mb-4 justify-start items-center md:flex">
+              <CardTitle className="flex text-2xl items-center">
+                <Cuboid className="h-12 w-12 text-primary" />
+                Discharge
+              </CardTitle>
+              <CardDescription className="text-center text-lg ml-0 md:ml-auto mr-2 ">
+                {shift} | {employee.name} |{" "}
+                <span
+                  className={
+                    furnaceSize.toUpperCase() === "BIG"
+                      ? "bg-green-400 font-semibold text-white px-2 py-1 rounded whitespace-nowrap" 
+                      : "bg-red-400 font-semibold text-white px-2 py-1 rounded whitespace-nowrap"
+                  }
+                >
+                  {furnaceSize.toUpperCase()} Furnace
+                </span>{" "}
+                
+              </CardDescription>
+            </div>
+            {/* <div className="flex justify-center mt-4">
               <Tabs value={furnaceSize} onValueChange={setFurnaceSize}>
                 <TabsList>
                   <TabsTrigger value="big">Big Furnace</TabsTrigger>
                   <TabsTrigger value="small">Small Furnace</TabsTrigger>
                 </TabsList>
               </Tabs>
-            </div>
+            </div> */}
           </CardHeader>
 
           <CardContent className="space-y-6">

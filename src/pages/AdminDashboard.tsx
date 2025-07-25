@@ -65,6 +65,8 @@ interface MaterialEntry {
   timestamp: string;
   totalWeight: number;
   materials: MaterialSubItem[];
+  furnaceSize?: string;
+  outputStatus?: boolean;
 }
 
 export default function AdminDashboard() {
@@ -101,6 +103,7 @@ export default function AdminDashboard() {
     dateFrom: "",
     dateTo: "",
     outputStatus: "all",
+    furnaceSize: "all",
   });
 
   useEffect(() => {
@@ -162,7 +165,11 @@ export default function AdminDashboard() {
       const to = new Date(materialFilters.dateTo + "T23:59:59");
       filtered = filtered.filter((m) => new Date(m.timestamp) <= to);
     }
-
+    if (materialFilters.furnaceSize && materialFilters.furnaceSize !== "all") {
+      filtered = filtered.filter(
+        (m) => m.furnaceSize?.toUpperCase() === materialFilters.furnaceSize
+      );
+    }
     setFilteredMaterials(filtered);
   }, [materialFilters, materials]);
 
@@ -334,6 +341,7 @@ export default function AdminDashboard() {
                       dateFrom: "",
                       dateTo: "",
                       outputStatus: "all",
+                      furnaceSize: "all",
                     })
                   }
                   className="flex-shrink-0"
@@ -428,6 +436,24 @@ export default function AdminDashboard() {
                       <SelectItem value="all">All</SelectItem>
                       <SelectItem value="Collected">Collected</SelectItem>
                       <SelectItem value="Waiting">Waiting</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="w-full sm:w-auto flex-1 min-w-[150px]">
+                  <p className="text-sm">Furnace Size</p>
+                  <Select
+                    value={materialFilters.furnaceSize}
+                    onValueChange={(v) =>
+                      setMaterialFilters((f) => ({ ...f, furnaceSize: v }))
+                    }
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Furnace Size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="BIG">BIG</SelectItem>
+                      <SelectItem value="SMALL">SMALL</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
