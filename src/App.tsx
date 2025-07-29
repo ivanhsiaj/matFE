@@ -13,6 +13,8 @@ import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import OperationFurnaceSelection from "./pages/OperationFurnaceSelectionPage";
+import CornerLogo from "./components/CornerLogo";
+import ChangeAdminPassword from "./components/ChangePassword";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -42,6 +44,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/change-password" element={<ChangeAdminPassword />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route
@@ -62,8 +65,10 @@ const App = () => {
             />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+            
           </Routes>
         </BrowserRouter>
+        <CornerLogo/>
       </TooltipProvider>
     </QueryClientProvider>
   );

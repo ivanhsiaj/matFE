@@ -163,7 +163,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Lock, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminLogin = () => {
@@ -281,6 +281,7 @@ const AdminLogin = () => {
               {/* <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">{t('adminLogin.demoCredentials')}</p> */}
               <p className="text-sm text-blue-600 dark:text-blue-400">{t('adminLogin.demoUsername')}</p>
               <p className="text-sm text-blue-600 dark:text-blue-400">{t('adminLogin.demoPassword')}</p>
+              <Link className="text-sm text-blue-600 dark:text-blue-400" to='/change-password'>Forgot Password</Link>
             </div>
           </CardContent>
         </Card>

@@ -1,15 +1,11 @@
 {
-  "siteTitle": "UNA EMPRESA ECOLÓGICA",
-  "siteSubtitle": "Trabajamos para restaurar la Tierra mediante el reciclaje y la promoción de la tecnología de",
+  "siteTitle": "Impulsando la Excelencia en Aluminio",
+  "siteSubtitle": "En Hikae, nos especializamos en la fabricación de aleaciones de aluminio para diversas necesidades industriales. Con un compromiso con la calidad, la innovación y la satisfacción del cliente, hemos establecido una reputación por nuestro suministro confiable y capacidades avanzadas de procesamiento. Este sistema ha sido desarrollado para digitalizar las operaciones del horno, optimizar la entrada de datos y garantizar la transparencia operativa.",
   "adminTitle": "Acceso de Administrador",
-  "adminDescription": "Inicio de sesión seguro para gestión de datos e informes",
-  "adminFeature1": "• Ver todas las entradas de materiales",
-  "adminFeature2": "• Filtrar y buscar datos",
-  "adminFeature3": "• Editar y eliminar entradas",
-  "adminFeature4": "• Exportar informes (CSV/Excel)",
+  "adminDescription": "Acceso seguro al sistema para gestionar usuarios, revisar registros y supervisar las operaciones.",
   "adminButton": "Iniciar sesión Admin",
   "employeeTitle": "Entrada de Empleado",
-  "employeeDescription": "Entrada rápida de datos de materiales para turnos de producción",
+  "employeeDescription": "Interfaz sencilla para que los operadores del horno registren las entradas de material con precisión y rapidez.",
   "employeeFeature1": "• Selecciona tu turno",
   "employeeFeature2": "• Ingresa detalles del material",
   "employeeFeature3": "• Entrada de peso flexible",
@@ -86,7 +82,11 @@
     "selectYourName": "Selecciona tu nombre para este turno",
     "selectShiftFirst": "Selecciona un turno primero",
     "chooseShiftToSeeEmployees": "Por favor, elige un turno primero para ver los empleados disponibles",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "chooseEmployeePlaceholder": "Selecciona tu nombre",
+    "employeeNotFound": "No se encontraron empleados para este turno",
+    "shiftAndEmpSelection": "Seleccionar Turno y Empleado",
+    "shiftAndEmpSelectionDesc": "Selecciona tu turno y empleado para continuar con la entrada de material"
   },
   "materialEntry": {
     "backToShift": "Volver a selección de turno",
@@ -130,7 +130,7 @@
     "invalidCredentials": "Credenciales inválidas",
     "demoCredentials": "Credenciales de demostración:",
     "demoUsername": "Usuario: admin",
-    "demoPassword": "Contraseña: Qwertyuiop"
+    "demoPassword": "Contraseña: Qwertyuiop@17"
     }
 
 }

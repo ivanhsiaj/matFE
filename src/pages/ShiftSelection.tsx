@@ -1,4 +1,3 @@
-
 // import { useState, useEffect } from "react";
 // import { useTranslation } from "react-i18next";
 // import { useNavigate } from "react-router-dom";
@@ -292,9 +291,23 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setShift, setEmployee } from "@/store/shiftSlice";
-import { ArrowLeft, Clock, User, Zap, RefreshCcw } from "lucide-react";
+import {
+  ArrowLeft,
+  Clock,
+  User,
+  Zap,
+  RefreshCcw,
+  NotebookText,
+} from "lucide-react";
 
 import LangToggle from "@/components/LangToggle";
+import {
+  Card,
+  CardContent,
+  CardTitle,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 
 const ShiftSelection = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -341,9 +354,7 @@ const ShiftSelection = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch(
-          `${backendUrl}/api/materials/employees`
-        );
+        const response = await fetch(`${backendUrl}/api/materials/employees`);
         const data = await response.json();
         const grouped = {
           "Shift 1": data.filter((emp) => emp.shiftAssigned === "Shift 1"),
@@ -389,8 +400,8 @@ const ShiftSelection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-2">
-      <div className="max-w-4xl mx-auto mt-3">
+    <div className="min-h-screen bg-white p-2">
+      <div className="max-w-6xl mx-auto p-6 mt-3">
         {/* Back Button */}
         <div className="flex justify-between items-center">
           <button
@@ -404,143 +415,150 @@ const ShiftSelection = () => {
             <LangToggle />
           </span>
         </div>
-
-        <div className="text-center mb-3">
-          <h1 className="text-2xl md:text-xl font-bold text-gray-900 mb-2">
-            {t("shiftSelection.selectYourShift")}
-          </h1>
-          <p className="text-gray-600 text-xs">
-            {t("shiftSelection.chooseShift")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Shift Selection */}
-          <div className="space-y-4 w-fit">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 md:p-7">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                  <Clock className="text-blue-600" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-bold text-gray-900">
-                    {t("shiftSelection.selectYourShift")}
-                  </h2>
-                  <p className="text-gray-600 text-xs">
-                    {t("shiftSelection.chooseShift")}
-                  </p>
-                </div>
+        <Card className="bg-white rounded-2xl shadow-lg md:pb-6">
+          <CardHeader className="text-center bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border-b border-gray-100 pb-4 rounded-t-2xl">
+            <CardTitle className="flex items-center gap-2 text-2xl">
+              <div className="w-12 h-12 bg-blue-100 flex items-center justify-center rounded-xl p-1 rounded-full shadow-lg">
+                <NotebookText className="h-8 w-8 text-blue-600 " />
               </div>
+              <h1 className="text-2xl md:text-xl font-bold text-gray-900 mb-2">
+                {t("shiftSelection.shiftAndEmpSelection")}
+              </h1>
+            </CardTitle>
+            {/* <p className="text-gray-600 text-xs">
+              {t("shiftSelection.shiftAndEmpSelectionDesc")}
+            </p> */}
+          </CardHeader>
 
-              <div className="space-y-2">
-                {shifts.map((shift) => (
-                  <button
-                    key={shift.id}
-                    onClick={() => shift.available && handleShiftSelect(shift)}
-                    disabled={!shift.available}
-                    className={`w-full p-2.5 rounded-xl border-2 transition-all duration-200 text-left ${
-                      currentShift === shift.id
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : shift.available
-                        ? "border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50"
-                        : "border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div
-                          className={`font-semibold text-sm ${
-                            currentShift === shift.id
-                              ? "text-blue-700"
-                              : "text-gray-900"
-                          }`}
-                        >
-                          {shift.name}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {shift.time}
-                        </div>
-                      </div>
-                      <div
-                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                          currentShift === shift.id
-                            ? "border-blue-500 bg-blue-500"
-                            : "border-gray-300"
-                        }`}
-                      >
-                        {currentShift === shift.id && (
-                          <svg
-                            className="w-3 h-3 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Employee + Mode Selection */}
-          <div className="space-y-4">
-            {currentShift ? (
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 md:p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Shift Selection */}
+            <div className="space-y-4 w-fit">
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-7">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                    <User className="text-green-600" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                    <Clock className="text-blue-600" />
                   </div>
                   <div>
                     <h2 className="text-sm font-bold text-gray-900">
-                      {t("shiftSelection.chooseEmployee")}
+                      {t("shiftSelection.selectYourShift")}
                     </h2>
                     <p className="text-gray-600 text-xs">
-                      {t("shiftSelection.selectYourName")}
+                      {t("shiftSelection.chooseShift")}
                     </p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {employeesByShift[currentShift].map((emp) => (
+                <div className="space-y-2">
+                  {shifts.map((shift) => (
                     <button
-                      key={emp._id}
-                      onClick={() => handleEmployeeSelect(emp)}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 flex items-center ${
-                        selectedEmployee?._id === emp._id
-                          ? "border-green-500 bg-green-50 shadow-md"
-                          : "border-gray-200 bg-white hover:border-green-300 hover:bg-green-50"
+                      key={shift.id}
+                      onClick={() =>
+                        shift.available && handleShiftSelect(shift)
+                      }
+                      disabled={!shift.available}
+                      className={`w-full p-2.5 rounded-xl border-2 transition-all duration-200 text-left ${
+                        currentShift === shift.id
+                          ? "border-blue-500 bg-blue-50 shadow-md"
+                          : shift.available
+                          ? "border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50"
+                          : "border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed"
                       }`}
                     >
-                      <User
-                        className={`h-5 w-5 mr-3 ${
-                          selectedEmployee?._id === emp._id
-                            ? "text-green-700"
-                            : "text-gray-600"
-                        }`}
-                      />
-                      <span
-                        className={`font-semibold text-sm ${
-                          selectedEmployee?._id === emp._id
-                            ? "text-green-700"
-                            : "text-gray-900"
-                        }`}
-                      >
-                        {emp.name}
-                      </span>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div
+                            className={`font-semibold text-sm ${
+                              currentShift === shift.id
+                                ? "text-blue-700"
+                                : "text-gray-900"
+                            }`}
+                          >
+                            {shift.name}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {shift.time}
+                          </div>
+                        </div>
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                            currentShift === shift.id
+                              ? "border-blue-500 bg-blue-500"
+                              : "border-gray-300"
+                          }`}
+                        >
+                          {currentShift === shift.id && (
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
                     </button>
                   ))}
                 </div>
+              </div>
+            </div>
 
-                {/* Charge/Discharge toggle
+            {/* Employee + Mode Selection */}
+            <div className="space-y-4">
+              {currentShift ? (
+                <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                      <User className="text-green-600" />
+                    </div>
+                    <div>
+                      <h2 className="text-sm font-bold text-gray-900">
+                        {t("shiftSelection.chooseEmployee")}
+                      </h2>
+                      <p className="text-gray-600 text-xs">
+                        {t("shiftSelection.selectYourName")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {employeesByShift[currentShift].map((emp) => (
+                      <button
+                        key={emp._id}
+                        onClick={() => handleEmployeeSelect(emp)}
+                        className={`p-4 rounded-xl border-2 transition-all duration-200 flex items-center ${
+                          selectedEmployee?._id === emp._id
+                            ? "border-green-500 bg-green-50 shadow-md"
+                            : "border-gray-200 bg-white hover:border-green-300 hover:bg-green-50"
+                        }`}
+                      >
+                        <User
+                          className={`h-5 w-5 mr-3 ${
+                            selectedEmployee?._id === emp._id
+                              ? "text-green-700"
+                              : "text-gray-600"
+                          }`}
+                        />
+                        <span
+                          className={`font-semibold text-sm ${
+                            selectedEmployee?._id === emp._id
+                              ? "text-green-700"
+                              : "text-gray-900"
+                          }`}
+                        >
+                          {emp.name}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Charge/Discharge toggle
                 <div className="mt-5">
                   <h3 className="text-sm font-semibold mb-2">
                     Select Operation:
@@ -572,35 +590,36 @@ const ShiftSelection = () => {
                   </div>
                 </div> */}
 
-                <div className="mt-5 grid grid-cols-1">
-                  <button
-                    onClick={handleContinue}
-                    disabled={!currentShift || !selectedEmployee}
-                    className={`px-4 py-2 rounded-xl font-semibold text-lg transition-all duration-200 ${
-                      currentShift && selectedEmployee 
-                        ? "bg-green-500 text-white hover:bg-green-600"
-                        : "bg-gray-200 text-sm text-gray-500 cursor-not-allowed"
-                    }`}
-                  >
-                    {t("shiftSelection.continue")}
-                  </button>
+                  <div className="mt-5 grid grid-cols-1">
+                    <button
+                      onClick={handleContinue}
+                      disabled={!currentShift || !selectedEmployee}
+                      className={`px-4 py-2 rounded-xl font-semibold text-lg transition-all duration-200 ${
+                        currentShift && selectedEmployee
+                          ? "bg-green-500 text-white hover:bg-green-600"
+                          : "bg-gray-200 text-sm text-gray-500 cursor-not-allowed"
+                      }`}
+                    >
+                      {t("shiftSelection.continue")}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 text-center">
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <User className="h-8 w-8 text-gray-400" />
+              ) : (
+                <div className="bg-white rounded-2xl border border-gray-100 p-6 text-center">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="h-8 w-8 text-gray-400" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-400 mb-2">
+                    {t("shiftSelection.selectShiftFirst")}
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    {t("shiftSelection.chooseShiftToSeeEmployees")}
+                  </p>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-400 mb-2">
-                  {t("shiftSelection.selectShiftFirst")}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {t("shiftSelection.chooseShiftToSeeEmployees")}
-                </p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );

@@ -1,19 +1,12 @@
 {
-  "siteTitle": "AN ECO-FRIENDLY COMPANY",
-  "siteSubtitle": "We work in a way to restore earth via recycling and promoting green building technology",
+  "siteTitle": "Empowering Aluminium Excellence",
+  "siteSubtitle": "At Hikae, we specialize in aluminium alloy manufacturing for diverse industrial needs. With a commitment to quality, innovation, and customer satisfaction, we have established a reputation for reliable supply and advanced processing capabilities. This system is developed to digitally streamline furnace operations, optimize data entry, and ensure operational transparency.",
   "adminTitle": "Admin Access",
-  "adminDescription": "Secure login for data management and reporting",
-  "adminFeature1": "• View all material entries",
-  "adminFeature2": "• Filter and search data",
-  "adminFeature3": "• Edit and delete entries",
-  "adminFeature4": "• Export reports (CSV/Excel)",
-  "adminButton": "Admin Login",
+  "adminDescription": "Secure backend access for managing users, reviewing entries, and overseeing operations.",
+  
+  "adminButton": "Go to Admin Panel",
   "employeeTitle": "Employee Entry",
-  "employeeDescription": "Quick material data entry for production shifts",
-  "employeeFeature1": "• Select your shift",
-  "employeeFeature2": "• Enter material details",
-  "employeeFeature3": "• Flexible weight entry",
-  "employeeFeature4": "• Instant submission",
+  "employeeDescription": "Simple interface for furnace operators to record material entries with accuracy and speed.",
   "employeeButton": "Start Entry",
   "footer": "© 2024 AutoParts Manufacturing. All rights reserved.",
   "adminDashboard": {
@@ -87,7 +80,11 @@
     "selectYourName": "Select your name for this shift",
     "selectShiftFirst": "Select a Shift First",
     "chooseShiftToSeeEmployees": "Please choose a shift first to see available employees",
-    "continue": "Continue"
+    "continue": "Continue",
+    "chooseEmployeePlaceholder": "Select your name",
+    "employeeNotFound": "No employees found for this shift",
+    "shiftAndEmpSelection":" Select Shift and Employee",
+    "shiftAndEmpSelectionDesc": "Select your shift and employee to proceed with material entry  "
   },
   "materialEntry": {
     "backToShift": "Back to Shift Selection",
@@ -131,7 +128,7 @@
     "invalidCredentials": "Invalid credentials",
     "demoCredentials": "Demo Credentials:",
     "demoUsername": "Username: admin",
-    "demoPassword": "Password: Qwertyuiop"
+    "demoPassword": "Password: Qwertyuiop@17"
     }
 
 }
