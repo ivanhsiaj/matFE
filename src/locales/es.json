@@ -147,6 +147,16 @@
       "continue_button": "Continuar a Entrada de Material",
       "select_options": "Selecciona opciones para continuar",
       "back": "Volver a Selección de Turno"
+    },
+    "dischargeEntry": {
+      "backToMode": "Volver a la selección de modo",
+      "title": "Registro de Descarga",
+      "optionalWeight": "Peso Opcional",
+      "Weight": "Peso",
+      "selectSowInput": "Selecciona una entrada para vincular a la Sowa (la preferida está resaltada)",
+      "Submitting": "Enviando...",
+      "ConfirmSow": "Confirmar Sowa",
+      "NoInputsow": "No se encontraron entradas posibles para la Sowa."
     }
 
 }

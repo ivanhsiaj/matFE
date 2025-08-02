@@ -22,6 +22,7 @@ import {
   setFurnaceSize,
   clearAll,
 } from "@/store/shiftSlice";
+import { t } from "i18next";
 export default function DischargePage() {
   const dispatch = useDispatch();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -176,7 +177,7 @@ export default function DischargePage() {
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Shift Selection
+            {t("dischargeEntry.backToMode")}
           </Button>
 
           <div className="ml-auto">
@@ -191,7 +192,7 @@ export default function DischargePage() {
                 <div className="w-12 h-12 bg-blue-100 flex items-center justify-center rounded-xl p-1 rounded-full shadow-lg">
                   <Cuboid className="h-8 w-8 text-blue-600 " />
                 </div>
-                Discharge Entry
+                {t("dischargeEntry.title")}
               </CardTitle>
               <CardDescription className="text-lg mt-2 md:mt-0 text-center md:text-right">
                 {shift} | {employee.name} |{" "}
@@ -248,7 +249,7 @@ export default function DischargePage() {
                 {possibleInputs.length ? (
                   <div className="space-y-3">
                     <p className="text-sm text-gray-500 text-center">
-                      Select an input to link Sow (preferred is highlighted)
+                      {t("dischargeEntry.selectSowInput")}
                     </p>
 
                     {possibleInputs.map((input) => (
@@ -266,15 +267,15 @@ export default function DischargePage() {
                         }`}
                       >
                         <p className="text-sm">
-                          Emp: {input.employee.name} | Weight:{" "}
-                          {input.totalWeight} |{" "}
+                          Emp: {input.employee.name} | {t("dischargeEntry.Weight")}:{" "}
+                          {input.totalWeight} lbs|{" "}
                           {new Date(input.timestamp).toLocaleString()}
                         </p>
                       </div>
                     ))}
 
                     <Input
-                      placeholder="Optional Sow Weight"
+                      placeholder={t("dischargeEntry.optionalWeight")}
                       type="number"
                       value={weight}
                       onChange={(e) => setWeight(e.target.value)}
@@ -284,12 +285,12 @@ export default function DischargePage() {
                       onClick={handleSubmitSow}
                       className="w-full"
                     >
-                      {isSubmitting ? "Submitting..." : "Confirm Sow"}
+                      {isSubmitting ?  `${t("dischargeEntry.Submitting")}`:  `${t("dischargeEntry.ConfirmSow")}`}
                     </Button>
                   </div>
                 ) : (
                   <p className="text-center text-sm text-gray-500">
-                    No possible inputs found for Sow.
+                  {t("dischargeEntry.NoInputsow")}
                   </p>
                 )}
               </div>

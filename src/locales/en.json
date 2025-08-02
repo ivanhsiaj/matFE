@@ -145,6 +145,16 @@
       "continue_button": "Continue to Material Entry",
       "select_options": "Select Options to Continue",
       "back": "Back to Shift Selection"
+    },
+    "dischargeEntry": {
+      "backToMode": "Back to Mode Selection",
+      "title": "Discharge Entry",
+      "optionalWeight": "Optional Weight",
+      "Weight": "Weight",
+      "selectSowInput": "Select an input to link Sow (preferred is highlighted)",
+      "Submitting": "Submitting...",
+      "ConfirmSow": "Confirm Sow",
+      "NoInputsow": "No possible inputs found for Sow."
     }
 
 }
