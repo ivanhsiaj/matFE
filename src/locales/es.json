@@ -130,7 +130,7 @@
     "invalidCredentials": "Credenciales inválidas",
     "demoCredentials": "Credenciales de demostración:",
     "demoUsername": "Usuario: admin",
-    "demoPassword": "Contraseña: Qwertyuiop@17"
+    "demoPassword": "Contraseña: Qwertyuiop"
     },
     "OperationFurnaceSelection": {
       "title": "Configuración de Operación",
@@ -156,6 +156,8 @@
       "selectSowInput": "Selecciona una entrada para vincular a la Sowa (la preferida está resaltada)",
       "Submitting": "Enviando...",
       "ConfirmSow": "Confirmar Sowa",
+      "Submit": "Enviar",
+      "Shift": "Turno",
       "NoInputsow": "No se encontraron entradas posibles para la Sowa."
     }
 

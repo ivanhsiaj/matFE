@@ -128,7 +128,7 @@
     "invalidCredentials": "Invalid credentials",
     "demoCredentials": "Demo Credentials:",
     "demoUsername": "Username: admin",
-    "demoPassword": "Password: Qwertyuiop@17"
+    "demoPassword": "Password: Qwertyuiop"
     },
     "OperationFurnaceSelection":{
       "title": "Operation Configuration",
@@ -154,6 +154,8 @@
       "selectSowInput": "Select an input to link Sow (preferred is highlighted)",
       "Submitting": "Submitting...",
       "ConfirmSow": "Confirm Sow",
+      "Submit": "Submit",
+      "Shift": "Shift",
       "NoInputsow": "No possible inputs found for Sow."
     }
 

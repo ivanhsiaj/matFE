@@ -195,7 +195,7 @@ export default function DischargePage() {
                 {t("dischargeEntry.title")}
               </CardTitle>
               <CardDescription className="text-lg mt-2 md:mt-0 text-center md:text-right">
-                {shift} | {employee.name} |{" "}
+                {t("dischargeEntry.Shift")}{" "}{shift[6]} | {employee.name} |{" "}
                 <span
                   className={`px-2 py-1 rounded font-semibold text-white ${
                     furnaceSize.toUpperCase() === "BIG"
@@ -228,7 +228,7 @@ export default function DischargePage() {
             {selectedItem && selectedItem !== "sow" && (
               <div className="space-y-4">
                 <Input
-                  placeholder="Optional Weight"
+                  placeholder={t("dischargeEntry.optionalWeight")}
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
@@ -238,7 +238,7 @@ export default function DischargePage() {
                   onClick={handleSubmitSteelSlag}
                   className="w-full"
                 >
-                  {isSubmitting ? "Submitting..." : `Submit ${selectedItem}`}
+                  {isSubmitting ? `${t("dischargeEntry.Submitting")}` : `${t("dischargeEntry.Submit")} ${selectedItem}`}
                 </Button>
               </div>
             )}
