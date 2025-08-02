@@ -89,7 +89,7 @@
     "shiftAndEmpSelectionDesc": "Selecciona tu turno y empleado para continuar con la entrada de material"
   },
   "materialEntry": {
-    "backToShift": "Volver a selección de turno",
+    "backToMode": "Volver a la selección de modo",
     "title": "Registro de Material",
     "materialName": "Nombre del Material",
     "materialNamePlaceholder": "p. ej., Varilla de acero, Hoja de aluminio",
@@ -131,6 +131,22 @@
     "demoCredentials": "Credenciales de demostración:",
     "demoUsername": "Usuario: admin",
     "demoPassword": "Contraseña: Qwertyuiop@17"
+    },
+    "OperationFurnaceSelection": {
+      "title": "Configuración de Operación",
+      "operation_mode": "Modo de Operación",
+      "charge": "Cargar",
+      "charge_desc": "Cargar materiales en el horno",
+      "discharge": "Descargar",
+      "discharge_desc": "Retirar materiales del horno",
+      "furnace_size": "Tamaño del Horno",
+      "big_furnace": "Horno Grande",
+      "big_furnace_desc": "Operaciones de alta capacidad",
+      "small_furnace": "Horno Pequeño",
+      "small_furnace_desc": "Operaciones de capacidad estándar",
+      "continue_button": "Continuar a Entrada de Material",
+      "select_options": "Selecciona opciones para continuar",
+      "back": "Volver a Selección de Turno"
     }
 
 }

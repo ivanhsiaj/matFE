@@ -124,6 +124,7 @@
 //     </div>
 //   );
 // }
+import { useTranslation } from "react-i18next";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -146,6 +147,7 @@ import {
 } from "@/store/shiftSlice";
 
 export default function OperationFurnaceSelection() {
+  const { t } = useTranslation();
   const { selectedShift, selectedEmployee } = useSelector(
     (state: any) => state.shift
   );
@@ -157,18 +159,7 @@ export default function OperationFurnaceSelection() {
   const [furnaceSize, setFurnaceSizeLocal] = useState("");
   const navigate = useNavigate();
 
-  //   const handleContinue = () => {
-  //     if (!mode || !furnaceSize) return;
-  //     if (mode === "charge") {
-  //       navigate(
-  //         `/employee/material-entry?shift=${shift}&employee=${employee}&mode=${mode}&furnaceSize=${furnaceSize}`
-  //       );
-  //     } else {
-  //       navigate(
-  //         `/employee/discharge/material-entry?shift=${shift}&employee=${employee}&mode=${mode}&furnaceSize=${furnaceSize}`
-  //       );
-  //     }
-  //   };
+  
   const handleContinue = () => {
     if (!mode || !furnaceSize) return;
 
@@ -188,7 +179,7 @@ export default function OperationFurnaceSelection() {
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent animate-pulse"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent animate-pulse"></div> */}
       </div>
 
       <div className="max-w-6xl mx-auto p-6 relative z-10">
@@ -203,7 +194,7 @@ export default function OperationFurnaceSelection() {
             className="mb-6 mt-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Shift Selection
+            {t("OperationFurnaceSelection.back")}
           </Button>
 
           <span className="ml-auto mr-4">
@@ -220,7 +211,7 @@ export default function OperationFurnaceSelection() {
                 <Flame className="h-8 w-8 text-orange-600 " />
               </div>
               <CardTitle className="text-2xl text-gray-800 font-bold">
-                Operation Configuration
+                {t("OperationFurnaceSelection.title")}
               </CardTitle>
             </div>
 
@@ -236,7 +227,7 @@ export default function OperationFurnaceSelection() {
               <div className="flex items-center gap-3 mb-6">
                 <Settings2 className="h-6 w-6 text-blue-600" />
                 <h2 className="text-xl font-bold text-gray-800">
-                  Operation Mode
+                  {t("OperationFurnaceSelection.operation_mode")}
                 </h2>
               </div>
 
@@ -259,10 +250,10 @@ export default function OperationFurnaceSelection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800">
-                        Charge
+                        {t("OperationFurnaceSelection.charge")}
                       </h3>
                       <p className="text-gray-600 text-sm">
-                        Load materials into furnace
+                        {t("OperationFurnaceSelection.charge_desc")}
                       </p>
                     </div>
                   </div>
@@ -286,10 +277,10 @@ export default function OperationFurnaceSelection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800">
-                        Discharge
+                        {t("OperationFurnaceSelection.discharge")}
                       </h3>
                       <p className="text-gray-600 text-sm">
-                        Remove materials from furnace
+                        {t("OperationFurnaceSelection.discharge_desc")}
                       </p>
                     </div>
                   </div>
@@ -302,7 +293,7 @@ export default function OperationFurnaceSelection() {
               <div className="flex items-center gap-3 mb-6">
                 <Flame className="h-6 w-6 text-orange-500" />
                 <h2 className="text-xl font-bold text-gray-800">
-                  Furnace Size
+                  {t("OperationFurnaceSelection.furnace_size")}
                 </h2>
               </div>
 
@@ -325,10 +316,10 @@ export default function OperationFurnaceSelection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800">
-                        Big Furnace
+                        {t("OperationFurnaceSelection.big_furnace")}
                       </h3>
                       <p className="text-gray-600 text-sm">
-                        High capacity operations
+                        {t("OperationFurnaceSelection.big_furnace_desc")}
                       </p>
                     </div>
                   </div>
@@ -352,10 +343,10 @@ export default function OperationFurnaceSelection() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800">
-                        Small Furnace
+                        {t("OperationFurnaceSelection.small_furnace")}
                       </h3>
                       <p className="text-gray-600 text-sm">
-                        Standard capacity operations
+                        {t("OperationFurnaceSelection.small_furnace_desc")}
                       </p>
                     </div>
                   </div>
@@ -375,8 +366,8 @@ export default function OperationFurnaceSelection() {
                 }`}
               >
                 {!mode || !furnaceSize
-                  ? "Select Options to Continue"
-                  : "Continue to Material Entry"}
+                  ? `${t("OperationFurnaceSelection.select_options")}`
+                  :  `${t("OperationFurnaceSelection.continue_button")}`}
               </Button>
             </div>
           </CardContent>

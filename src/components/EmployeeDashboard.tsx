@@ -37,10 +37,7 @@ import { useTranslation } from "react-i18next";
 import { Download, Edit, Trash2, Plus, LogOut, Filter } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import DischargeTable from "@/components/DischargeTable";
-import AdminDashboard1 from "../components/MatDashboard1";
-import LangToggle from "@/components/LangToggle";
-import exp from "constants";
+
 interface Employee {
   _id: string;
   name: string;

@@ -10,7 +10,7 @@
   "employeeButton": "Start Entry",
   "footer": "© 2024 AutoParts Manufacturing. All rights reserved.",
   "adminDashboard": {
-  "title": "Admin Dashboard",
+    "title": "Admin Dashboard",
     "logout": "Logout",
     "filtersTitle": "Filters & Search",
     "shift": "Shift",
@@ -87,7 +87,7 @@
     "shiftAndEmpSelectionDesc": "Select your shift and employee to proceed with material entry  "
   },
   "materialEntry": {
-    "backToShift": "Back to Shift Selection",
+    "backToMode": "Back to Mode Selection",
     "title": "Material Entry",
     "materialName": "Material Name",
     "materialNamePlaceholder": "e.g., Steel Rod, Aluminum Sheet",
@@ -129,6 +129,22 @@
     "demoCredentials": "Demo Credentials:",
     "demoUsername": "Username: admin",
     "demoPassword": "Password: Qwertyuiop@17"
+    },
+    "OperationFurnaceSelection":{
+      "title": "Operation Configuration",
+      "operation_mode": "Operation Mode",
+      "charge": "Charge",
+      "charge_desc": "Load materials into furnace",
+      "discharge": "Discharge",
+      "discharge_desc": "Remove materials from furnace",
+      "furnace_size": "Furnace Size",
+      "big_furnace": "Big Furnace",
+      "big_furnace_desc": "High capacity operations",
+      "small_furnace": "Small Furnace",
+      "small_furnace_desc": "Standard capacity operations",
+      "continue_button": "Continue to Material Entry",
+      "select_options": "Select Options to Continue",
+      "back": "Back to Shift Selection"
     }
 
 }
